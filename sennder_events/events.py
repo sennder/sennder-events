@@ -2,24 +2,10 @@ import requests
 
 from django.conf import settings
 
-from .api.serializers import EventSerializer
+from .serializers import EventSerializer
 
 
-print("Do we really need the meta class still?")
-
-
-class MetaEvent(type):
-
-    events = {}
-
-    def __new__(meta, name, bases, attrs):
-        new_class = super().__new__(meta, name, bases, attrs)
-        if new_class.ID is not ...:
-            meta.events[new_class.ID] = new_class
-        return new_class
-
-
-class BaseEvent(metaclass=MetaEvent):
+class BaseEvent():
     ID = ...
 
     def submit(self):
