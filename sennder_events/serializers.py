@@ -5,4 +5,3 @@ class EventSerializer(serializers.Serializer):
 
     ID = serializers.CharField()
     properties = serializers.DictField()
-    signature = serializers.DictField()

@@ -5,8 +5,24 @@ from django.conf import settings
 from .serializers import EventSerializer
 
 
-class BaseEvent():
+class BaseEventMeta(type):
+
+    def __call__(cls, *args, **kwargs):
+        obj = type.__call__(cls, *args, **kwargs)
+        obj.check_properties_set()
+        return obj
+
+
+class BaseEvent(metaclass=BaseEventMeta):
     ID = ...
+
+    def check_properties_set(self):
+        if not hasattr(self, "properties"):
+            raise NotImplementedError(
+                "self.properties must be set in {class_name}".format(
+                    class_name=type(self).__name__
+                )
+            )
 
     def submit(self):
         """
@@ -14,15 +30,8 @@ class BaseEvent():
         to the filters that subscribe for it.
         """
 
-        serialized_event = EventSerializer(self)
+        serialized_event = EventSerializer(self).data
         requests.post(
             settings.SENNDER_EVENTS["post_url"],
             data=serialized_event
         )
-
-    @property
-    def properties_as_strings(self):
-        return {
-            str(key): str(value)
-            for key, value in self.properties.itselfms()
-        }
