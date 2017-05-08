@@ -1,3 +1,3 @@
 # Sennder Events
 
-## Client library for issuing notifications with sennder-notifications
+## Client library for issuing notifications to the sennder notifications service
