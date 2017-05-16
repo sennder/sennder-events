@@ -31,7 +31,8 @@ class BaseEvent(metaclass=BaseEventMeta):
         """
 
         serialized_event = EventSerializer(self).data
-        requests.post(
+        response = requests.post(
             settings.SENNDER_EVENTS["POST_URL"],
-            data=serialized_event
+            json=serialized_event
         )
+        response.raise_for_status()
