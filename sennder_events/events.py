@@ -33,6 +33,10 @@ class BaseEvent(metaclass=BaseEventMeta):
         serialized_event = EventSerializer(self).data
         response = requests.post(
             settings.SENNDER_EVENTS["POST_URL"],
-            json=serialized_event
+            json=serialized_event,
+            auth=(
+                settings.SENNDER_EVENTS["SYSTEM_USER_NAME"],
+                settings.SENNDER_EVENTS["SYSTEM_USER_PASSWORD"]
+            )
         )
         response.raise_for_status()
