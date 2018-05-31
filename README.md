@@ -28,5 +28,12 @@ In our case, it is `'https://staging.api.sennder.com/api/notifications/events/'`
 ### Usage
 
 Define your own events that inherit from `sennder_events.events.BaseEvent`.
-The event must have a `properties` dictionary attribute that should be set during `__ini__`.
-Calling `submit` will submit the event to the `post_url` specified in the settings. 
+The event must have a `properties` dictionary attribute that should be set during `__init__`.
+Example:
+```
+MyEvent(BaseEvent):
+   ID = MY_EVENT
+   __init__(self, my_property):
+       self.properties = {"my_property": my_property}
+```
+Then, after creating and instance of your event class, you can call `submit` which will submit the event to the `post_url` specified in the settings. 
