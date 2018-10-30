@@ -27,7 +27,7 @@ setup(
     author_email='konstantin.schubert@sennder.com',
     packages=find_packages(exclude=("tests",)),
     install_requires=[
-        'requests>=2.13,<2.14',
+        'requests==2.20',
         'djangorestframework>=3.5.4,<3.6',
     ],
     include_package_data=True,
