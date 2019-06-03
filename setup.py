@@ -28,7 +28,7 @@ setup(
     packages=find_packages(exclude=("tests",)),
     install_requires=[
         'requests==2.20',
-        'djangorestframework>=3.5.4,<3.6',
+        'djangorestframework>=3.9.4,<3.10',
     ],
     include_package_data=True,
     zip_safe=True,
