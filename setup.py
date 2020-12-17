@@ -29,7 +29,7 @@ setup(
     author_email='konstantin.schubert@sennder.com',
     packages=find_packages(exclude=("tests",)),
     install_requires=[
-        'requests==2.20',
+        'requests==2.25',
         'djangorestframework>=3.9.4,<3.10',
     ],
     include_package_data=True,
